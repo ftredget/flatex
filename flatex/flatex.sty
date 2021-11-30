@@ -1,0 +1,176 @@
+\ProvidesPackage{flatex}
+\NeedsTeXFormat{LaTeX2e}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{xstring}
+\usepackage{hyperref}
+
+\numberwithin{equation}{subsection}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{principle}{Principle}[subsection]
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{definition}
+\newtheorem*{definitionu}{Definition}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{solution}{Solution}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{notation}[theorem]{Notation}
+
+\renewcommand{\epsilon}{\varepsilon}%Looks nicer
+\renewcommand{\emptyset}{\varnothing}%Looks nicer
+\newcommand{\ds}{\displaystyle}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\OR}{\mathbin{\text{or}}}%Binary operator
+\newcommand{\AND}{\mathbin{\&}}%Binary operator
+\newcommand{\ereal}{[-\infty,\infty]}%Extended real numbers
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+\newcommand{\Floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+\newcommand{\Ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\nin}{\not\in}
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\R}[1]{
+\IfSubStr{23456789nm}{#1}{\mathbb{R}^{#1}}{\mathbb{R}}
+}
+
+\makeatletter%Learnt from https://tex.stackexchange.com/questions/29973/more-than-one-optional-argument-for-newcommand
+\def\seq{
+   \@ifnextchar[
+     {\seq@i}
+     {\seq@i[a]}
+}
+\def\seq@i[#1]{
+   \@ifnextchar[
+     {\seq@ii{#1}}
+     {\seq@ii{#1}[n]}
+}
+\def\seq@ii#1[#2]{
+	\@ifnextchar[
+		{\seq@iii{#1}{#2}}
+		{\seq@iii{#1}{#2}[1]}
+}
+\def\seq@iii#1#2[#3]{
+	\@ifnextchar[
+		{\seq@iv{#1}{#2}{#3}}
+		{\seq@iv{#1}{#2}{#3}[\infty]}
+}
+\def\seq@iv#1#2#3[#4]{
+	({#1}_{#2})_{{#2}={#3}}^{#4}
+}
+\makeatother
+
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareMathOperator{\id}{Id}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\Abs}[1]{\left|#1\right|}
+
+\newcommand{\norm}[1]{%The norm of a vector
+	\|#1\|
+}
+\newcommand{\Norm}[1]{%The displaystyle norm of a vector
+	\left\|#1\right\|
+}
+\newcommand{\der}[2]{%The derivative
+	\frac{\mathrm{d}#1}{\mathrm{d}#2}
+}
+\newcommand{\pder}[2]{%The partial derivative
+	\frac{\partial#1}{\partial#2}
+}
+\newcommand{\vv}[2]{%A 2d column vector
+	\begin{pmatrix}
+		#1\\
+		#2
+	\end{pmatrix}
+}
+\newcommand{\vvv}[3]{%A 3d column vector
+	\begin{pmatrix}
+		#1\\
+		#2\\
+		#3
+	\end{pmatrix}
+}
+\newcommand{\vvr}[2]{%A 2d column vector
+	\begin{pmatrix}
+		#1 & #2
+	\end{pmatrix}
+}
+\newcommand{\vvvr}[3]{%A 3d column vector
+	\begin{pmatrix}
+		#1 & #2 & #3
+	\end{pmatrix}
+}
+\newcommand{\mm}[4]{%A 2-by-2 matrix
+	\begin{bmatrix}
+		#1 & #2\\
+		#3 & #4
+	\end{bmatrix}
+}
+\renewcommand{\sp}[2]{%The scalar product
+	\langle#1,#2\rangle
+}
+\newcommand{\Sp}[2]{%The displaystyle scalar product
+	\left\langle#1,#2\right\rangle
+}
+\newcommand{\vxy}{\vv{x}{y}}%A 2d column vector containing x and y
+\newcommand{\vxyz}{\vvv{x}{y}{z}}%A 3d column vector containing x, y, and z
+\newcommand{\vx}{\vec{x}}
+\newcommand{\vy}{\vec{y}}
+\newcommand{\vz}{\vec{z}}
+\newcommand{\rmd}{\,\mathrm{d}}%A roman 'd' for use in integrals
+
+\newenvironment{amatrix}[1]{%Augmented matrix (vector)
+\left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{
+\end{array}\right]
+}
+\newenvironment{amatrixn}[2]{%Augmented matrix (matrix)
+\left[\begin{array}{@{}*{#1}{c}|*{#2}{c}@{}}
+}{
+\end{array}\right]
+}
+
+
+%Statistics
+\DeclareMathOperator{\p}{P}
+\DeclareMathOperator{\e}{E}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\sd}{StdDev}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\cor}{Corr}
+
+%Distributions
+\DeclareMathOperator{\unif}{Unif}
+\DeclareMathOperator{\bern}{Bern}
+\DeclareMathOperator{\bin}{Bin}
+\DeclareMathOperator{\geom}{Geom}
+\DeclareMathOperator{\pois}{Poisson}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Expo}{Exponential}
+\DeclareMathOperator{\gam}{Gamma}
+\DeclareMathOperator{\Beta}{Beta}
+\DeclareMathOperator{\wei}{Weibull}
+\DeclareMathOperator{\n}{N}
+\DeclareMathOperator{\cauchy}{Cauchy}
