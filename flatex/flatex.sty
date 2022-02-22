@@ -38,6 +38,9 @@
 \newcommand{\OR}{\mathbin{\text{or}}}%Binary operator
 \newcommand{\AND}{\mathbin{\&}}%Binary operator
 \newcommand{\rh}{\mathbin{\mathcal{R}_H}}
+\newcommand{\hr}{\mathbin{\prescript{}{H}{\mathcal{R}}}}
+\newcommand{\tl}{\vartriangleleft}
+\newcommand{\tle}{\trianglelefteq}
 \newcommand{\ereal}{[-\infty,\infty]}%Extended real numbers
 \newcommand{\floor}[1]{\lfloor#1\rfloor}
 \newcommand{\Floor}[1]{\left\lfloor#1\right\rfloor}
@@ -52,7 +55,7 @@
 \newcommand{\iid}{\mathop{\sim}\limits^{\text{iid}}}
 
 \newcommand{\R}[1]{%The real numbers and real vector spaces
-    \IfSubStr{23456789nm}{#1}{\mathbb{R}^{#1}}{\mathbb{R}}
+    \IfSubStr{23456789nm*}{#1}{\mathbb{R}^{#1}}{\mathbb{R}}
 }
 
 \makeatletter%Learnt from https://tex.stackexchange.com/questions/29973/more-than-one-optional-argument-for-newcommand - used for defining sequences like (a_n)_{n=1}^{\infty}

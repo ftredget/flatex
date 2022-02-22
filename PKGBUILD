@@ -1,6 +1,6 @@
 # Maintainer: Finn Tredget <f.tredget@lancaster.ac.uk>
 pkgname=flatex
-pkgver=1.0.6
+pkgver=1.0.9
 pkgrel=1
 pkgdesc="My LaTeX macros etc."
 arch=('any')
@@ -10,7 +10,7 @@ depends=('texlive-core')
 noextract=()
 source=("$pkgname.tar.gz")
 install=$pkgname.install
-sha256sums=('95ae5241553acacb4fff16d08bb5b714a85d617afd2cd1872a13ba5f5207d0da')
+sha256sums=('a9e45eae1b53f5c6009b89a9b3e2840d2d0451a883c69e9085795e93cb70d057')
 
 package() {
   install -dm755 "$pkgdir"/usr/share/texmf
