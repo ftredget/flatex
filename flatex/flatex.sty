@@ -32,6 +32,7 @@
 \newtheorem{notation}[theorem]{Notation}
 
 \renewcommand{\epsilon}{\varepsilon}%Looks nicer
+\renewcommand{\phi}{\varphi}%Looks nicer
 \renewcommand{\emptyset}{\varnothing}%Looks nicer
 \newcommand{\ds}{\displaystyle}
 \newcommand{\bb}[1]{\mathbb{#1}}
@@ -51,12 +52,24 @@
 \DeclareMathOperator{\hcf}{hcf}
 \DeclareMathOperator{\dom}{dom}%Domain
 \DeclareMathOperator{\bij}{Bij}
+\DeclareMathOperator{\aut}{Aut}
 \DeclareMathOperator{\len}{length}
 \newcommand{\iid}{\mathop{\sim}\limits^{\text{iid}}}
 
+%Sets etc.
 \newcommand{\R}[1]{%The real numbers and real vector spaces
-    \IfSubStr{23456789nm*}{#1}{\mathbb{R}^{#1}}{\mathbb{R}}
+    \IfSubStr{23456789nm*}{#1}{\mathbb{R}^{#1}}{\mathbb{R}#1}
 }
+\newcommand{\C}[1]{%The complex numbers and complex vector spaces
+	\IfSubStr{23456789nm*}{#1}{\mathbb{C}^{#1}}{\mathbb{C}#1}
+}
+\newcommand{\N}[1]{%The natural numbers and naturals with 0
+	\IfSubStr{0}{#1}{\mathbb{N}_{#1}}{\mathbb{N}#1}
+}
+\newcommand{\Z}{\mathbb{Z}}%The integers
+\newcommand{\Q}{\mathbb{Q}}%The rational numbers
+\DeclareMathOperator{\GL}{GL}%General linear group
+\DeclareMathOperator{\SL}{SL}%Special linear group
 
 \makeatletter%Learnt from https://tex.stackexchange.com/questions/29973/more-than-one-optional-argument-for-newcommand - used for defining sequences like (a_n)_{n=1}^{\infty}
 \def\seq{
