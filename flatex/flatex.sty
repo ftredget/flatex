@@ -38,8 +38,6 @@
 \newcommand{\bb}[1]{\mathbb{#1}}
 \newcommand{\OR}{\mathbin{\text{or}}}%Binary operator
 \newcommand{\AND}{\mathbin{\&}}%Binary operator
-\newcommand{\rh}{\mathbin{\mathcal{R}_H}}
-\newcommand{\hr}{\mathbin{\prescript{}{H}{\mathcal{R}}}}
 \newcommand{\tl}{\vartriangleleft}
 \newcommand{\tle}{\trianglelefteq}
 \newcommand{\ereal}{[-\infty,\infty]}%Extended real numbers
@@ -54,7 +52,10 @@
 \DeclareMathOperator{\bij}{Bij}
 \DeclareMathOperator{\aut}{Aut}
 \DeclareMathOperator{\len}{length}
+\DeclareMathOperator{\lin}{Lin}
+\DeclareMathOperator{\inv}{Inv}
 \newcommand{\iid}{\mathop{\sim}\limits^{\text{iid}}}
+\newcommand{\res}{Res}
 
 %Sets etc.
 \newcommand{\R}[1]{%The real numbers and real vector spaces
@@ -66,8 +67,14 @@
 \newcommand{\N}[1]{%The natural numbers and naturals with 0
 	\IfSubStr{0}{#1}{\mathbb{N}_{#1}}{\mathbb{N}#1}
 }
-\newcommand{\Z}{\mathbb{Z}}%The integers
-\newcommand{\Q}{\mathbb{Q}}%The rational numbers
+\newcommand{\Z}[1]{%The integers and real vector spaces
+\IfSubStr{23456789nm*}{#1}{\mathbb{Z}^{#1}}{\mathbb{Z}#1}
+}
+\newcommand{\Q}[1]{%The rational numbers and real vector spaces
+\IfSubStr{23456789nm*}{#1}{\mathbb{Q}^{#1}}{\mathbb{Q}#1}
+}
+\DeclareMathOperator{\m}{M}%Matrices
+\DeclareMathOperator{\ut}{UT}%Upper triangular matrices
 \DeclareMathOperator{\GL}{GL}%General linear group
 \DeclareMathOperator{\SL}{SL}%Special linear group
 
@@ -97,14 +104,33 @@
 }
 \makeatother
 
+\makeatletter
+\def\rh{
+	\@ifnextchar[
+		{\rh@i}
+		{\rh@i[H]}
+}
+\def\rh@i[#1]{
+	\mathbin{\mathcal{R}_{#1}}
+}
+\makeatother
 
+\makeatletter
+\def\hr{
+	\@ifnextchar[
+		{\hr@i}
+		{\hr[H]}
+}
+\def\hr@i[#1]{
+	\mathbin{\prescript{}{#1}{\mathcal{R}}}
+}
+\makeatother
 \DeclareMathOperator{\sgn}{sgn}%Sign
 \DeclareMathOperator{\im}{im}%Image
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\nullity}{nullity}
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\diag}{diag}
-\DeclareMathOperator{\m}{M}
 
 \DeclareMathOperator{\id}{Id}%Identity map
 \DeclareMathOperator{\isom}{Isom}%Isometric group
