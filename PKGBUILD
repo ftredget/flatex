@@ -1,19 +1,21 @@
 # Maintainer: Finn Tredget <f.tredget@lancaster.ac.uk>
 pkgname=flatex
-pkgver=1.0.19
+pkgver=1.0.20
 pkgrel=1
 pkgdesc="My LaTeX macros etc."
 arch=('any')
 url="http://www.github.com/ftredget/flatex"
 license=('GPL')
 depends=('texlive-core')
-noextract=()
-source=("$pkgname.tar.gz")
+noextract=("flatex.sty" "LICENSE")
+source=("flatex.sty" "LICENSE")
 install=$pkgname.install
-sha256sums=('86a50328c4f89f2a56476e952e9002303ab0f9c9f5dfc75b60bb96968090789a')
+sha256sums=('1742a411109cbb2a33ea98129dfdf25431959f28a8b6676a4365962ad707ea61'
+            '3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986')
 
 package() {
-  install -dm755 "$pkgdir"/usr/share/texmf
-  cp -r flatex/ "$pkgdir"/usr/share/texmf/tex/
+  install -dm755 "$pkgdir/usr/share/texmf"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm755 flatex.sty "$pkgdir/usr/share/texmf/tex/flatex.sty"
 }
 
