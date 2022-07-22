@@ -10,7 +10,7 @@ depends=('texlive-core')
 noextract=()
 source=("$pkgname.tar.gz")
 install=$pkgname.install
-sha256sums=('5b23929dd87f5ce26e298fcf296dd6550d064e3b91151cbe9bfa53d983f0a5ec')
+sha256sums=('86a50328c4f89f2a56476e952e9002303ab0f9c9f5dfc75b60bb96968090789a')
 
 package() {
   install -dm755 "$pkgdir"/usr/share/texmf
